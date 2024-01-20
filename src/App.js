@@ -7,6 +7,7 @@ import RegistrasiUser from "./Components/RegistrasiUser";
 import Pelanggan from "./Components/Pelanggan";
 import TambahPelanggan from "./Components/TambahPelanggan";
 import UpdatePelanggan from "./Components/UpdatePelanggan";
+import Tagihan from "./Components/Tagihan";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Pelanggan" element={<Pelanggan />} />
           <Route path="/TambahPelanggan" element={<TambahPelanggan />} />
           <Route path="/UpdatePelanggan" element={<UpdatePelanggan />} />
+          <Route path="/Tagihan" element={<Tagihan />} />
         </Routes>
       </>
     </Router>
