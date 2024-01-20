@@ -49,6 +49,9 @@ const Pelanggan = () => {
               <Nav.Link as={NavLink} to="/Pelanggan" style={navLinkStyles}>
                 Daftar Pelanggan
               </Nav.Link>
+              <Nav.Link as={NavLink} to="/Tagihan" style={navLinkStyles}>
+                Daftar Tagihan
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -97,7 +100,7 @@ const Pelanggan = () => {
                     <Button
                       as={Link}
                       to={{
-                        pathname: "/UpdatePelanggan",
+                        pathname: "/UpdateTagihan",
                         state: user.kodeTarif,
                       }}
                       className="m-1"

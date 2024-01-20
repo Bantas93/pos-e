@@ -1,20 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Components/Login";
-import Dashboard from "./Components/Dashboard";
-import UserManagement from "./Components/UserManagement";
-import UpdateUser from "./Components/UpdateUser";
-import RegistrasiUser from "./Components/RegistrasiUser";
-import Pelanggan from "./Components/Pelanggan";
-import TambahPelanggan from "./Components/TambahPelanggan";
-import UpdatePelanggan from "./Components/UpdatePelanggan";
-import Tagihan from "./Components/Tagihan";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import UserManagement from "./components/UserManagement";
+import UpdateUser from "./components/UpdateUser";
+import RegistrasiUser from "./components/RegistrasiUser";
+import Pelanggan from "./components/Pelanggan";
+import TambahPelanggan from "./components/TambahPelanggan";
+import UpdatePelanggan from "./components/UpdatePelanggan";
+import Tagihan from "./components/Tagihan";
+import TambahTagihan from "./components/TambahTagihan";
 
 function App() {
   return (
     <Router>
       <>
         <Routes>
-          <Route path="/" element={<Login />} id="/" />
+          <Route path="/" element={<Login />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/UserManagement" element={<UserManagement />} />
           <Route path="/UpdateUser" element={<UpdateUser />} />
@@ -23,6 +24,7 @@ function App() {
           <Route path="/TambahPelanggan" element={<TambahPelanggan />} />
           <Route path="/UpdatePelanggan" element={<UpdatePelanggan />} />
           <Route path="/Tagihan" element={<Tagihan />} />
+          <Route path="/TambahTagihan" element={<TambahTagihan />} />
         </Routes>
       </>
     </Router>
