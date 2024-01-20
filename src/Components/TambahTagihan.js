@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Card, Form, Dropdown } from "react-bootstrap";
 import Bulan from "../utils/Bulan";
+import NotLogin from "./NotLogin";
 
 const TambahTagihan = () => {
+  const handleLogin = localStorage.username;
   const [noMeter, setNoMeter] = useState();
   const [handleNama, setHandleNama] = useState("Tidak Ada");
   const [bulanTagihan, setBulanTagihan] = useState();
@@ -76,6 +78,10 @@ const TambahTagihan = () => {
       console.error("Error fetching data:", error);
     }
   };
+
+  if (handleLogin == null) {
+    return <NotLogin />;
+  }
 
   return (
     <div className="container">

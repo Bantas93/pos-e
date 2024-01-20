@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { TiUserDeleteOutline } from "react-icons/ti";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
+import NotLogin from "./NotLogin";
 
 const UserManagement = () => {
+  const handleLogin = localStorage.username;
   const [dataUser, setDataUser] = useState([]);
   const navLinkStyles = ({ isActive }) => {
     return {
@@ -61,6 +63,10 @@ const UserManagement = () => {
     }
   };
 
+  if (handleLogin == null) {
+    return <NotLogin />;
+  }
+
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -80,6 +86,16 @@ const UserManagement = () => {
               </Nav.Link>
               <Nav.Link as={NavLink} to="/Tagihan" style={navLinkStyles}>
                 Daftar Tagihan
+              </Nav.Link>
+              <Nav.Link
+                as={NavLink}
+                to="/"
+                style={navLinkStyles}
+                onClick={() => {
+                  localStorage.clear();
+                }}
+              >
+                Logout
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

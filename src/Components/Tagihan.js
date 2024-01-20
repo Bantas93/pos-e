@@ -3,8 +3,10 @@ import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
+import NotLogin from "./NotLogin";
 
 const Tagihan = () => {
+  const handleLogin = localStorage.username;
   const navLinkStyles = ({ isActive }) => {
     return {
       color: isActive ? "black" : "",
@@ -32,6 +34,10 @@ const Tagihan = () => {
     fetchData();
   }, []);
 
+  if (handleLogin == null) {
+    return <NotLogin />;
+  }
+
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -51,6 +57,16 @@ const Tagihan = () => {
               </Nav.Link>
               <Nav.Link as={NavLink} to="/Tagihan" style={navLinkStyles}>
                 Daftar Tagihan
+              </Nav.Link>
+              <Nav.Link
+                as={NavLink}
+                to="/"
+                style={navLinkStyles}
+                onClick={() => {
+                  localStorage.clear();
+                }}
+              >
+                Logout
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

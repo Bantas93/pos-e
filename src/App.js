@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
+import NotLogin from "./components/NotLogin";
 import Dashboard from "./components/Dashboard";
 import UserManagement from "./components/UserManagement";
 import UpdateUser from "./components/UpdateUser";
@@ -16,6 +17,7 @@ function App() {
       <>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/NotLogin" element={<NotLogin />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/UserManagement" element={<UserManagement />} />
           <Route path="/UpdateUser" element={<UpdateUser />} />

@@ -3,8 +3,10 @@ import { NavLink, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
+import NotLogin from "./NotLogin";
 
 const Pelanggan = () => {
+  const handleLogin = localStorage.username;
   const navLinkStyles = ({ isActive }) => {
     return {
       color: isActive ? "black" : "",
@@ -32,6 +34,10 @@ const Pelanggan = () => {
     fetchData();
   }, []);
 
+  if (handleLogin == null) {
+    return <NotLogin />;
+  }
+
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -51,6 +57,16 @@ const Pelanggan = () => {
               </Nav.Link>
               <Nav.Link as={NavLink} to="/Tagihan" style={navLinkStyles}>
                 Daftar Tagihan
+              </Nav.Link>
+              <Nav.Link
+                as={NavLink}
+                to="/"
+                style={navLinkStyles}
+                onClick={() => {
+                  localStorage.clear();
+                }}
+              >
+                Logout
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -1,36 +1,48 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate(0);
-  const [dataUser, setDataUser] = useState({});
   const [inputUsername, setInputUsername] = useState("");
   const [inputPassword, setInputPassword] = useState("");
 
   function submit() {
-    // console.log(inputUsername);
-    // console.log(inputPassword);
-    console.log(dataUser);
-    // localStorage.setItem("userData", JSON.stringify(dataUser));
-    navigate("/Dashboard");
+    if (!inputUsername || !inputPassword) {
+      window.alert("Data Harus Lengkap !");
+      return;
+    }
+    console.log("Submitting data...");
+    fetchUserData();
   }
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/v1/user");
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data. Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setDataUser(data);
-        console.log();
-      } catch (error) {
-        console.error("Error fetching data:", error.message);
-      }
-    };
 
-    fetchData();
-  }, []);
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/v1/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          username: inputUsername,
+          password: inputPassword,
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        localStorage.setItem("username", inputUsername);
+        localStorage.setItem("isLogin", result.isLogin);
+        localStorage.setItem("lastLogin", result.lastLogin);
+        localStorage.setItem("hakAksesValue", result.hakAksesValue);
+        window.location.href = "/Dashboard";
+      } else {
+        window.alert("Data tidak ditemukan!");
+        console.error("Gagal:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <main className="container-fluid d-flex flex-column align-items-center bg-login">

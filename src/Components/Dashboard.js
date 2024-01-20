@@ -1,13 +1,9 @@
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import NotLogin from "./NotLogin";
 
 const Dashboard = () => {
-  // const storedData = localStorage.getItem("userData");
-  // const userData = storedData ? JSON.parse(storedData) : null;
-  // console.log(userData);
-  // const handleLogin = userData.find((obj) => obj.username === "user-002");
-  // console.log(handleLogin);
-
+  const handleLogin = localStorage.getItem("username");
   const navLinkStyles = ({ isActive }) => {
     return {
       color: isActive ? "black" : "",
@@ -15,6 +11,12 @@ const Dashboard = () => {
       fontWeight: isActive ? "bold" : "",
     };
   };
+
+  if (handleLogin == null) {
+    console.log(handleLogin);
+    return <NotLogin />;
+  }
+
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -34,6 +36,16 @@ const Dashboard = () => {
               </Nav.Link>
               <Nav.Link as={NavLink} to="/Tagihan" style={navLinkStyles}>
                 Daftar Tagihan
+              </Nav.Link>
+              <Nav.Link
+                as={NavLink}
+                to="/"
+                style={navLinkStyles}
+                onClick={() => {
+                  localStorage.clear();
+                }}
+              >
+                Logout
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

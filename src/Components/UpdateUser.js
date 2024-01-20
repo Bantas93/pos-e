@@ -1,11 +1,12 @@
-// import { useLocation } from "react-router-dom";
-// import { useState } from "react";
+import NotLogin from "./NotLogin";
 
 const UpdateUser = () => {
-  // const location = useLocation();
-  // const { updateUser } = location.state;
-  // Gunakan data updateUser di sini
-  // console.log(updateUser);
+  const handleLogin = localStorage.username;
+
+  if (handleLogin == null) {
+    return <NotLogin />;
+  }
+
   return (
     <div className="container">
       <h1>Update User</h1>

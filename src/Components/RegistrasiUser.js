@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Card, Form } from "react-bootstrap";
+import NotLogin from "./NotLogin";
 
 const RegistrasiUser = () => {
+  const handleLogin = localStorage.username;
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [selectedRole, setSelectedRole] = useState(2);
@@ -43,6 +45,10 @@ const RegistrasiUser = () => {
       console.error("Error fetching data:", error);
     }
   };
+
+  if (handleLogin == null) {
+    return <NotLogin />;
+  }
 
   return (
     <div className="container">
