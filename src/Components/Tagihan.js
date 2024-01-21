@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
 import NotLogin from "./NotLogin";
@@ -16,6 +16,11 @@ const Tagihan = () => {
   };
 
   const [dataTagihan, setDataTagihan] = useState([]);
+  const navigate = useNavigate();
+
+  const handleClick = (user) => {
+    navigate("/UpdateTagihan", { state: { user } });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -103,20 +108,16 @@ const Tagihan = () => {
             </thead>
             <tbody>
               {dataTagihan.map((user, id) => (
-                <tr key={user.userId}>
+                <tr key={user.idTagihan}>
                   <th>{id + 1}</th>
                   <th>{user.nama}</th>
                   <td>{user.noMeter}</td>
-                  <td>{user.bulanTagihan}</td>
+                  <td>{user.bulanTagihanName}</td>
                   <td>{user.tahunTagihan}</td>
                   <td>{user.totalPemakaian}</td>
                   <td>
                     <Button
-                      as={Link}
-                      to={{
-                        pathname: "/UpdatePelanggan",
-                        state: user.noMeter,
-                      }}
+                      onClick={() => handleClick(user)}
                       className="m-1"
                       variant="primary"
                     >

@@ -41,7 +41,6 @@ const UserManagement = () => {
     } else {
       redirect();
     }
-    // window.confirm(`yakin hapus ${id}`);
   };
 
   const Delete = async (id) => {
