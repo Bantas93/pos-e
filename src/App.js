@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import NotLogin from "./components/NotLogin";
+import NotFound from "./components/NotFound";
 import Dashboard from "./components/Dashboard";
 import User from "./components/User";
 import UpdateUser from "./components/UpdateUser";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/Tagihan" element={<Tagihan />} />
           <Route path="/TambahTagihan" element={<TambahTagihan />} />
           <Route path="/UpdateTagihan" element={<UpdateTagihan />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </>
     </Router>
