@@ -1,12 +1,14 @@
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate, redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { TiUserDeleteOutline } from "react-icons/ti";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
 import NotLogin from "./NotLogin";
 
 const Pelanggan = () => {
   const handleLogin = localStorage.username;
+
   const navLinkStyles = ({ isActive }) => {
     return {
       color: isActive ? "black" : "",
@@ -39,6 +41,39 @@ const Pelanggan = () => {
     fetchData();
   }, []);
 
+  const handleDelete = (id) => {
+    const result = window.confirm(
+      `Yakin hapus Pelanggan ini ? (no meter :${id})`
+    );
+    if (result) {
+      Delete(id);
+    } else {
+      redirect();
+    }
+  };
+
+  const Delete = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/v1/pelanggan/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        window.alert(`Pelanggan ${id} deleted successfully.`);
+        window.location.reload();
+      } else {
+        console.error(`Failed to delete pelanggan. Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error.message);
+    }
+  };
+
   if (handleLogin == null) {
     return <NotLogin />;
   }
@@ -54,7 +89,7 @@ const Pelanggan = () => {
               <Nav.Link as={NavLink} to="/Dashboard" style={navLinkStyles}>
                 Dashboard
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/UserManagement" style={navLinkStyles}>
+              <Nav.Link as={NavLink} to="/User" style={navLinkStyles}>
                 User Management
               </Nav.Link>
               <Nav.Link as={NavLink} to="/Pelanggan" style={navLinkStyles}>
@@ -118,6 +153,13 @@ const Pelanggan = () => {
                   <td>{pelanggan.beban}</td>
                   <td>{pelanggan.tarifPerKwh}</td>
                   <td>
+                    <Button
+                      className="m-1"
+                      variant="danger"
+                      onClick={() => handleDelete(pelanggan.noMeter)}
+                    >
+                      <TiUserDeleteOutline />
+                    </Button>
                     <Button
                       onClick={() => handleClick(pelanggan)}
                       className="m-1"

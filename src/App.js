@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import NotLogin from "./components/NotLogin";
 import Dashboard from "./components/Dashboard";
-import UserManagement from "./components/UserManagement";
+import User from "./components/User";
 import UpdateUser from "./components/UpdateUser";
 import RegistrasiUser from "./components/RegistrasiUser";
 import Pelanggan from "./components/Pelanggan";
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/NotLogin" element={<NotLogin />} />
           <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="/UserManagement" element={<UserManagement />} />
+          <Route path="/User" element={<User />} />
           <Route path="/UpdateUser" element={<UpdateUser />} />
           <Route path="/RegistrasiUser" element={<RegistrasiUser />} />
           <Route path="/Pelanggan" element={<Pelanggan />} />

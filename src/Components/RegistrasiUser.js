@@ -36,7 +36,7 @@ const RegistrasiUser = () => {
         const result = await response.json();
         window.alert("User berhasil di POST !");
         console.log(result);
-        window.location.href = "/UserManagement";
+        window.location.href = "/User";
       } else {
         window.alert("Data sudah ada !");
         console.error("Gagal:", response.statusText);
@@ -99,7 +99,7 @@ const RegistrasiUser = () => {
               </Form.Text>
             </Form.Group>
             <div className="d-flex justify-content-center align-items-center mt-3">
-              <Card.Link href="/UserManagement" className="btn btn-danger">
+              <Card.Link href="/User" className="btn btn-danger">
                 Kembali
               </Card.Link>
               <Card.Link href="#" className="btn btn-primary" onClick={submit}>

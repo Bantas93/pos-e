@@ -28,7 +28,7 @@ const Dashboard = () => {
               <Nav.Link as={NavLink} to="/Dashboard" style={navLinkStyles}>
                 Dashboard
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/UserManagement" style={navLinkStyles}>
+              <Nav.Link as={NavLink} to="/User" style={navLinkStyles}>
                 User Management
               </Nav.Link>
               <Nav.Link as={NavLink} to="/Pelanggan" style={navLinkStyles}>

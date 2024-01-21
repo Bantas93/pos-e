@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate, redirect } from "react-router-dom";
+import { TiUserDeleteOutline } from "react-icons/ti";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
 import NotLogin from "./NotLogin";
@@ -39,6 +40,37 @@ const Tagihan = () => {
     fetchData();
   }, []);
 
+  const handleDelete = (id) => {
+    const result = window.confirm(`Yakin hapus Tagihan ini ?`);
+    if (result) {
+      Delete(id);
+    } else {
+      redirect();
+    }
+  };
+
+  const Delete = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/v1/tagihan/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        window.alert(`Tagihan berhasil dihapus.`);
+        window.location.reload();
+      } else {
+        console.error(`Failed to delete tagihan. Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error.message);
+    }
+  };
+
   if (handleLogin == null) {
     return <NotLogin />;
   }
@@ -54,7 +86,7 @@ const Tagihan = () => {
               <Nav.Link as={NavLink} to="/Dashboard" style={navLinkStyles}>
                 Dashboard
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/UserManagement" style={navLinkStyles}>
+              <Nav.Link as={NavLink} to="/User" style={navLinkStyles}>
                 User Management
               </Nav.Link>
               <Nav.Link as={NavLink} to="/Pelanggan" style={navLinkStyles}>
@@ -116,6 +148,13 @@ const Tagihan = () => {
                   <td>{user.tahunTagihan}</td>
                   <td>{user.totalPemakaian}</td>
                   <td>
+                    <Button
+                      className="m-1"
+                      variant="danger"
+                      onClick={() => handleDelete(user.idTagihan)}
+                    >
+                      <TiUserDeleteOutline />
+                    </Button>
                     <Button
                       onClick={() => handleClick(user)}
                       className="m-1"

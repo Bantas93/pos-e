@@ -1,20 +1,27 @@
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
-import { NavLink, Link, redirect } from "react-router-dom";
+import { NavLink, Link, redirect, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { TiUserDeleteOutline } from "react-icons/ti";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
 import NotLogin from "./NotLogin";
 
-const UserManagement = () => {
+const User = () => {
   const handleLogin = localStorage.username;
-  const [dataUser, setDataUser] = useState([]);
+
   const navLinkStyles = ({ isActive }) => {
     return {
       color: isActive ? "black" : "",
       textDecoration: isActive ? "none" : "none",
       fontWeight: isActive ? "bold" : "",
     };
+  };
+
+  const [dataUser, setDataUser] = useState([]);
+  const navigate = useNavigate();
+
+  const handleClick = (user) => {
+    navigate("/UpdateUser", { state: { user } });
   };
 
   useEffect(() => {
@@ -77,7 +84,7 @@ const UserManagement = () => {
               <Nav.Link as={NavLink} to="/Dashboard" style={navLinkStyles}>
                 Dashboard
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/UserManagement" style={navLinkStyles}>
+              <Nav.Link as={NavLink} to="/User" style={navLinkStyles}>
                 User Management
               </Nav.Link>
               <Nav.Link as={NavLink} to="/Pelanggan" style={navLinkStyles}>
@@ -121,8 +128,7 @@ const UserManagement = () => {
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">User Id</th>
-                <th scope="col">User</th>
+                <th scope="col">Role</th>
                 <th scope="col">Name</th>
                 <th scope="col">Created</th>
                 <th scope="col">Action</th>
@@ -132,7 +138,6 @@ const UserManagement = () => {
               {dataUser.map((user, id) => (
                 <tr key={user.userId}>
                   <th>{id + 1}</th>
-                  <th>{user.userId}</th>
                   <td>{user.hakAkses}</td>
                   <td>{user.username}</td>
                   <td>{user.createdDate}</td>
@@ -145,11 +150,7 @@ const UserManagement = () => {
                       <TiUserDeleteOutline />
                     </Button>
                     <Button
-                      as={Link}
-                      to={{
-                        pathname: "/UpdateUser",
-                        state: { updateUser: user },
-                      }}
+                      onClick={() => handleClick(user)}
                       className="m-1"
                       variant="primary"
                     >
@@ -166,4 +167,4 @@ const UserManagement = () => {
   );
 };
 
-export default UserManagement;
+export default User;
