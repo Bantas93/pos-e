@@ -1,4 +1,4 @@
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Container, Navbar, Nav, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import NotLogin from "./NotLogin";
 
@@ -53,7 +53,14 @@ const Dashboard = () => {
       </Navbar>
 
       <div className="container">
-        <h1>Dashboard</h1>
+        <div className="d-flex justify-content-center align-items-center mt-5">
+          <h3 className="text-center" style={{ fontSize: "3Rem" }}>
+            Wellcome Back,
+            <Card className="mt-5 p-5 shadow">
+              <h1 style={{ fontSize: "5Rem" }}>{handleLogin}</h1>
+            </Card>
+          </h3>
+        </div>
       </div>
     </>
   );

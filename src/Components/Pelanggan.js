@@ -1,5 +1,5 @@
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
@@ -16,6 +16,11 @@ const Pelanggan = () => {
   };
 
   const [dataPelanggan, setDataPelanggan] = useState([]);
+  const navigate = useNavigate();
+
+  const handleClick = (pelanggan) => {
+    navigate("/UpdatePelanggan", { state: { pelanggan } });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -103,22 +108,18 @@ const Pelanggan = () => {
               </tr>
             </thead>
             <tbody>
-              {dataPelanggan.map((user, id) => (
-                <tr key={user.userId}>
+              {dataPelanggan.map((pelanggan, id) => (
+                <tr key={pelanggan.pelangganId}>
                   <th>{id + 1}</th>
-                  <th>{user.nama}</th>
-                  <td>{user.alamat}</td>
-                  <td>{user.noMeter}</td>
-                  <td>{user.kodeTarif}</td>
-                  <td>{user.beban}</td>
-                  <td>{user.tarifPerKwh}</td>
+                  <th>{pelanggan.nama}</th>
+                  <td>{pelanggan.alamat}</td>
+                  <td>{pelanggan.noMeter}</td>
+                  <td>{pelanggan.kodeTarif}</td>
+                  <td>{pelanggan.beban}</td>
+                  <td>{pelanggan.tarifPerKwh}</td>
                   <td>
                     <Button
-                      as={Link}
-                      to={{
-                        pathname: "/UpdateTagihan",
-                        state: user.kodeTarif,
-                      }}
+                      onClick={() => handleClick(pelanggan)}
                       className="m-1"
                       variant="primary"
                     >
