@@ -9,6 +9,11 @@ const Dashboard = () => {
       color: isActive ? "black" : "",
       textDecoration: isActive ? "none" : "none",
       fontWeight: isActive ? "bold" : "",
+      border: isActive ? "1px dotted black" : "",
+      borderRadius: isActive ? "10px" : "",
+      padding: isActive ? "10px" : "",
+      marginTop: isActive ? "5px" : "",
+      boxShadow: isActive ? "0 0 5px rgba(0, 0, 0, 0.3)" : "",
     };
   };
 
@@ -28,9 +33,13 @@ const Dashboard = () => {
               <Nav.Link as={NavLink} to="/Dashboard" style={navLinkStyles}>
                 Dashboard
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/User" style={navLinkStyles}>
-                User Management
-              </Nav.Link>
+              {localStorage.getItem("hakAksesValue") === "1" ? (
+                <Nav.Link as={NavLink} to="/User" style={navLinkStyles}>
+                  User Management
+                </Nav.Link>
+              ) : (
+                ""
+              )}
               <Nav.Link as={NavLink} to="/Pelanggan" style={navLinkStyles}>
                 Daftar Pelanggan
               </Nav.Link>
@@ -44,6 +53,7 @@ const Dashboard = () => {
                 onClick={() => {
                   localStorage.clear();
                 }}
+                className=""
               >
                 Logout
               </Nav.Link>
@@ -57,7 +67,7 @@ const Dashboard = () => {
           <h3 className="text-center" style={{ fontSize: "3Rem" }}>
             Wellcome Back,
             <Card className="mt-5 p-5 shadow">
-              <h1 style={{ fontSize: "5Rem" }}>{handleLogin}</h1>
+              <h1 style={{ fontSize: "10Rem" }}>{handleLogin} !!</h1>
             </Card>
           </h3>
         </div>

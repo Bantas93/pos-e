@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const Login = () => {
   const [inputUsername, setInputUsername] = useState("");
@@ -45,10 +44,10 @@ const Login = () => {
   };
 
   return (
-    <main className="container-fluid d-flex flex-column align-items-center bg-login">
+    <main className="container-fluid d-flex justify-content-center align-items-center bg-login">
       <section
         className="card shadow-lg p-4 mb-2 bg-body-tertiary rounded "
-        style={{ width: "22rem", opacity: "95%", marginTop: "120px" }}
+        style={{ width: "22rem", opacity: "95%" }}
       >
         <div className="card-body">
           <h4 className="text-center" style={{ letterSpacing: "2px" }}>
@@ -81,15 +80,6 @@ const Login = () => {
             </button>
           </div>
         </div>
-        <p
-          className="text-dark text-center"
-          style={{ letterSpacing: "1px", fontWeight: "bold" }}
-        >
-          Belum punya akun ?
-          <Link to="/" style={{ color: "green" }}>
-            klik disini
-          </Link>
-        </p>
       </section>
     </main>
   );

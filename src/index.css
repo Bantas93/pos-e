@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+.bg-login {
+  height: 100vh;
+  background-image: url("assets/img/listrik.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  background-attachment: fixed;
+}

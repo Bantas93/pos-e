@@ -13,6 +13,11 @@ const Tagihan = () => {
       color: isActive ? "black" : "",
       textDecoration: isActive ? "none" : "none",
       fontWeight: isActive ? "bold" : "",
+      border: isActive ? "1px dotted black" : "",
+      borderRadius: isActive ? "10px" : "",
+      padding: isActive ? "10px" : "",
+      marginTop: isActive ? "5px" : "",
+      boxShadow: isActive ? "0 0 5px rgba(0, 0, 0, 0.3)" : "",
     };
   };
 
@@ -86,9 +91,13 @@ const Tagihan = () => {
               <Nav.Link as={NavLink} to="/Dashboard" style={navLinkStyles}>
                 Dashboard
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/User" style={navLinkStyles}>
-                User Management
-              </Nav.Link>
+              {localStorage.getItem("hakAksesValue") === "1" ? (
+                <Nav.Link as={NavLink} to="/User" style={navLinkStyles}>
+                  User Management
+                </Nav.Link>
+              ) : (
+                ""
+              )}
               <Nav.Link as={NavLink} to="/Pelanggan" style={navLinkStyles}>
                 Daftar Pelanggan
               </Nav.Link>
