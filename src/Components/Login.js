@@ -50,9 +50,12 @@ const Login = () => {
         style={{ width: "22rem", opacity: "95%" }}
       >
         <div className="card-body">
-          <h4 className="text-center" style={{ letterSpacing: "2px" }}>
-            LOGIN
+          <h4 className="text-center" style={{ letterSpacing: "10px" }}>
+            POS-E
           </h4>
+          <h6 className="text-center" style={{ letterSpacing: "2px" }}>
+            Login User
+          </h6>
           <hr />
           <div className="mb-3">
             <p>Username</p>

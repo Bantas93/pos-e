@@ -53,7 +53,6 @@ const Dashboard = () => {
                 onClick={() => {
                   localStorage.clear();
                 }}
-                className=""
               >
                 Logout
               </Nav.Link>
