@@ -1,4 +1,4 @@
-import { MdErrorOutline } from "react-icons/md";
+import { SiAlienware } from "react-icons/si";
 
 const NotFound = () => {
   return (
@@ -12,7 +12,7 @@ const NotFound = () => {
           color: "red",
         }}
       >
-        <MdErrorOutline className="shadow" style={{ borderRadius: "100%" }} />
+        <SiAlienware className="shadow" style={{ borderRadius: "100%" }} />
       </div>
 
       <h1 className="text-center m-5">Error!</h1>
