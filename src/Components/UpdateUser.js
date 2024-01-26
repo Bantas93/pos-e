@@ -5,7 +5,7 @@ import { Card, Form } from "react-bootstrap";
 
 const UpdateUser = () => {
   const handleLogin = localStorage.username;
-  let location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
   const data = location.state.user;
   const [nama, setNama] = useState(data.username);
@@ -59,7 +59,7 @@ const UpdateUser = () => {
   return (
     <div className="container">
       <section className="row d-flex justify-content-center align-items-center m-5">
-        <Card style={{ width: "22rem" }} className="shadow">
+        <Card className="shadow CardW">
           <Card.Body>
             <Card.Title className="text-center">Update User</Card.Title>
             <hr className="mt-4"></hr>

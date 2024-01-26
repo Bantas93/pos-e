@@ -44,17 +44,10 @@ const Login = () => {
 
   return (
     <main className="container-fluid d-flex justify-content-center align-items-center bg-login">
-      <section
-        className="card shadow-lg p-4 mb-2 bg-body-tertiary rounded "
-        style={{ width: "22rem", opacity: "95%" }}
-      >
+      <section className="card shadow-lg p-4 mb-2 bg-body-tertiary rounded CardW">
         <div className="card-body">
-          <h4 className="text-center" style={{ letterSpacing: "10px" }}>
-            POS-E
-          </h4>
-          <h6 className="text-center" style={{ letterSpacing: "2px" }}>
-            Login User
-          </h6>
+          <h1 className="text-center">POS-E</h1>
+          <h6 className="text-center">Login User</h6>
           <hr />
           <div className="mb-3">
             <p>Username</p>

@@ -6,7 +6,7 @@ import { Dropdown, Card, Form } from "react-bootstrap";
 
 const UpdateTagihan = () => {
   const handleLogin = localStorage.username;
-  let location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
   const data = location.state.user;
   const id = data.idTagihan;
@@ -58,7 +58,7 @@ const UpdateTagihan = () => {
   return (
     <div className="container">
       <section className="row d-flex justify-content-center align-items-center m-5">
-        <Card style={{ width: "22rem" }} className="shadow">
+        <Card className="shadow CardW">
           <Card.Body>
             <Card.Title className="text-center">Update Tagihan</Card.Title>
             <hr className="mt-4"></hr>

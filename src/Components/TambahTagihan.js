@@ -82,7 +82,7 @@ const TambahTagihan = () => {
   return (
     <div className="container">
       <section className="row d-flex justify-content-center align-items-center m-5">
-        <Card style={{ width: "22rem" }} className="shadow">
+        <Card className="shadow CardW">
           <Card.Body>
             <Card.Title className="text-center">Tambah Tagihan</Card.Title>
             <hr className="mt-4"></hr>

@@ -18,3 +18,7 @@ code {
   background-repeat: repeat;
   background-attachment: fixed;
 }
+
+.CardW {
+  width: 22rem;
+}
