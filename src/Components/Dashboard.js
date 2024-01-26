@@ -10,6 +10,7 @@ const Dashboard = () => {
   return (
     <>
       <NavbarList />
+
       <div className="container">
         <div className="d-flex flex-column justify-content-center align-items-center mt-5">
           <h3 className="text-center" style={{ fontSize: "3Rem" }}>

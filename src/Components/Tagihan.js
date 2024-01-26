@@ -16,23 +16,6 @@ const Tagihan = () => {
     navigate("/UpdateTagihan", { state: { user } });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/v1/tagihan");
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data. Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setDataTagihan(data);
-      } catch (error) {
-        console.error("Error fetching data:", error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   const handleDelete = (id) => {
     const result = window.confirm(`Yakin hapus Tagihan ini ?`);
     if (result) {
@@ -63,6 +46,23 @@ const Tagihan = () => {
       console.error("Error deleting user:", error.message);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/v1/tagihan");
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data. Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setDataTagihan(data);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   if (handleLogin == null) {
     return <NotLogin />;

@@ -16,6 +16,25 @@ const User = () => {
     navigate("/UpdateUser", { state: { user } });
   };
 
+  const Delete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/v1/user/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        window.alert(`User ${id} deleted successfully.`);
+        window.location.reload();
+      } else {
+        console.error(`Failed to delete user. Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error.message);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,25 +58,6 @@ const User = () => {
       Delete(id);
     } else {
       redirect();
-    }
-  };
-
-  const Delete = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:8080/api/v1/user/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (response.ok) {
-        window.alert(`User ${id} deleted successfully.`);
-        window.location.reload();
-      } else {
-        console.error(`Failed to delete user. Status: ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Error deleting user:", error.message);
     }
   };
 
