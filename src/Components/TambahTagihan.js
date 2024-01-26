@@ -63,7 +63,7 @@ const TambahTagihan = () => {
       });
 
       if (response.ok) {
-        const result = await response.json();
+        await response.json();
         window.alert("Data Tagihan Berhasil Di Tambahkan !");
         window.location.href = "/Tagihan";
       } else {

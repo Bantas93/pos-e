@@ -32,7 +32,7 @@ const RegistrasiUser = () => {
       });
 
       if (response.ok) {
-        const result = await response.json();
+        await response.json();
         window.alert("User berhasil di POST !");
         window.location.href = "/User";
       } else {

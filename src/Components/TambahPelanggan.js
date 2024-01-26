@@ -35,7 +35,7 @@ const TambahPelanggan = () => {
       });
 
       if (response.ok) {
-        const result = await response.json();
+        await response.json();
         window.alert("Data Pelanggan Berhasil Di Tambahkan !");
         window.location.href = "/Pelanggan";
       } else {
