@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, Form, Dropdown } from "react-bootstrap";
 import NotLogin from "./NotLogin";
+import KodeTarif from "../utils/KodeTarif";
 
 const TambahPelanggan = () => {
   const handleLogin = localStorage.username;
@@ -8,12 +9,7 @@ const TambahPelanggan = () => {
   const [kodeTarif, setKodeTarif] = useState();
   const [nama, setNama] = useState();
   const [alamat, setAlamat] = useState();
-  const [dataTarif, setDataTarif] = useState();
-
-  const handleDropdownSelect = (tarif) => {
-    setKodeTarif(tarif);
-  };
-
+  console.log(kodeTarif);
   const submit = () => {
     if (!noMeter || !kodeTarif || !nama || !alamat) {
       window.alert("Data Harus Lengkap !");
@@ -22,25 +18,6 @@ const TambahPelanggan = () => {
     console.log("Submitting data...");
     fetchUserData();
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:8080/api/v1/tarif-listrik"
-        );
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data. Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setDataTarif(data);
-      } catch (error) {
-        console.error("Error fetching data:", error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const fetchUserData = async () => {
     try {
@@ -52,7 +29,7 @@ const TambahPelanggan = () => {
         },
         body: JSON.stringify({
           noMeter: noMeter,
-          kodeTarif: kodeTarif.kodeTarif,
+          kodeTarif: kodeTarif.nama,
           nama: nama,
           alamat: alamat,
         }),
@@ -120,21 +97,20 @@ const TambahPelanggan = () => {
               />
             </Form.Group>
 
-            <div className="mb-3" id="inputKodeTarif">
+            <div className="mb-3" id="kodeTarif">
               <p>Kode Tarif</p>
-
               <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                  {kodeTarif ? kodeTarif.kodeTarif : "Pilih Tarif"}
+                  {kodeTarif ? kodeTarif.nama : "Pilih Kode Tarif"}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  {dataTarif
-                    ? dataTarif.map((tarif) => (
+                  {KodeTarif
+                    ? KodeTarif().map((tarif) => (
                         <Dropdown.Item
-                          key={tarif.kodeTarif}
-                          onClick={() => handleDropdownSelect(tarif)}
+                          key={tarif.nama}
+                          onClick={() => setKodeTarif(tarif)}
                         >
-                          {tarif.kodeTarif}
+                          {tarif.nama}
                         </Dropdown.Item>
                       ))
                     : null}

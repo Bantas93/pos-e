@@ -93,8 +93,12 @@ const RegistrasiUser = () => {
                     setSelectedRole(e.target.value);
                   }}
                 >
-                  <option value={2}>SALES</option>
-                  <option value={1}>ADMIN</option>
+                  <option id="sales" value={2}>
+                    SALES
+                  </option>
+                  <option id="admin" value={1}>
+                    ADMIN
+                  </option>
                 </select>
               </Form.Text>
             </Form.Group>
@@ -102,7 +106,7 @@ const RegistrasiUser = () => {
               <Card.Link href="/User" className="btn btn-danger">
                 Kembali
               </Card.Link>
-              <Card.Link href="#" className="btn btn-primary" onClick={submit}>
+              <Card.Link className="btn btn-primary" onClick={submit}>
                 Submit
               </Card.Link>
             </div>
