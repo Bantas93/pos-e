@@ -43,7 +43,6 @@ const UpdateTagihan = () => {
       );
 
       if (response.ok) {
-        console.log(`Berhasil Update !`);
         window.alert("Data Berhasil di Update");
         navigate("/Tagihan");
       }

@@ -13,7 +13,6 @@ const RegistrasiUser = () => {
       window.alert("Username dan Password harus diisi");
       return;
     }
-    console.log("Submitting data...");
     fetchUserData();
   };
 
@@ -35,7 +34,6 @@ const RegistrasiUser = () => {
       if (response.ok) {
         const result = await response.json();
         window.alert("User berhasil di POST !");
-        console.log(result);
         window.location.href = "/User";
       } else {
         window.alert("Data sudah ada !");

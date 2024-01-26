@@ -40,7 +40,6 @@ const UpdatePelanggan = () => {
       );
 
       if (response.ok) {
-        console.log(`Berhasil Update !`);
         window.alert("Pelanggan Berhasil di Update");
         navigate("/Pelanggan");
       }

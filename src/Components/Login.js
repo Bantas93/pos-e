@@ -9,7 +9,6 @@ const Login = () => {
       window.alert("Data Harus Lengkap !");
       return;
     }
-    console.log("Submitting data...");
     fetchUserData();
   }
 

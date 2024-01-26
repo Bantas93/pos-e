@@ -9,13 +9,12 @@ const TambahPelanggan = () => {
   const [kodeTarif, setKodeTarif] = useState();
   const [nama, setNama] = useState();
   const [alamat, setAlamat] = useState();
-  console.log(kodeTarif);
+
   const submit = () => {
     if (!noMeter || !kodeTarif || !nama || !alamat) {
       window.alert("Data Harus Lengkap !");
       return;
     }
-    console.log("Submitting data...");
     fetchUserData();
   };
 
@@ -38,7 +37,6 @@ const TambahPelanggan = () => {
       if (response.ok) {
         const result = await response.json();
         window.alert("Data Pelanggan Berhasil Di Tambahkan !");
-        console.log(result);
         window.location.href = "/Pelanggan";
       } else {
         window.alert("Data Pelanggan sudah ada !");

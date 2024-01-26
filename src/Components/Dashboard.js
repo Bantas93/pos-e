@@ -18,7 +18,6 @@ const Dashboard = () => {
   };
 
   if (handleLogin == null) {
-    console.log(handleLogin);
     return <NotLogin />;
   }
 

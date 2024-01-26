@@ -44,7 +44,6 @@ const UpdateUser = () => {
       );
 
       if (response.ok) {
-        console.log(`Berhasil Update !`);
         window.alert("User Berhasil di Update");
         navigate("/User");
       }

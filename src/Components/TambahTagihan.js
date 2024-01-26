@@ -19,7 +19,6 @@ const TambahTagihan = () => {
 
   const handleBulan = (bulan) => {
     setBulanTagihan(bulan);
-    console.log(bulan);
   };
 
   const submit = () => {
@@ -27,7 +26,6 @@ const TambahTagihan = () => {
       window.alert("Data Harus Lengkap !");
       return;
     }
-    console.log("Submitting data...");
     fetchUserData();
   };
 
@@ -40,7 +38,6 @@ const TambahTagihan = () => {
         }
         const data = await response.json();
         setDataMeter(data);
-        // console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error.message);
       }
@@ -68,7 +65,6 @@ const TambahTagihan = () => {
       if (response.ok) {
         const result = await response.json();
         window.alert("Data Tagihan Berhasil Di Tambahkan !");
-        console.log(result);
         window.location.href = "/Tagihan";
       } else {
         window.alert("Data Tagihan sudah ada !");
