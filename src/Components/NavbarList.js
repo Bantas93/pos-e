@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 const NavbarList = () => {
   const navLinkStyles = ({ isActive }) => {
     return {
-      color: isActive ? "black" : "",
+      color: isActive ? "#12b2c0" : "",
       textDecoration: isActive ? "none" : "none",
       fontWeight: isActive ? "bold" : "",
-      border: isActive ? "1px dotted black" : "",
+      border: isActive ? "1px solid white" : "",
       borderRadius: isActive ? "10px" : "",
       padding: isActive ? "10px" : "",
       marginTop: isActive ? "5px" : "",
@@ -16,7 +16,11 @@ const NavbarList = () => {
 
   return (
     <div>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar
+        expand="lg"
+        className="bg-body-tertiary shadow"
+        data-bs-theme="dark"
+      >
         <Container>
           <Navbar.Brand href="/Dashboard">Pos-E</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

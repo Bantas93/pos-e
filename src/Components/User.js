@@ -72,7 +72,7 @@ const User = () => {
       <NavbarList />
 
       <div className="container">
-        <h1>User Management</h1>
+        <h1 className="text-white">User Management</h1>
         <div className="container text-end">
           <Button
             as={Link}
@@ -86,13 +86,13 @@ const User = () => {
             <TiUserAddOutline className="ms-3" />
           </Button>
         </div>
-        <div className="card border-dark p-5 m-3 shadow">
+        <div className="card border-white p-5 m-3 shadow" data-bs-theme="dark">
           {loading ? (
             <>
               <div className="loader"></div>
             </>
           ) : (
-            <table className="table text-center">
+            <table className="table text-center" data-bs-theme="dark">
               <thead>
                 <tr>
                   <th scope="col">No</th>
