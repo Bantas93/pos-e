@@ -10,6 +10,7 @@ import NotLogin from "./NotLogin";
 const Pelanggan = () => {
   const handleLogin = localStorage.username;
   const [dataPelanggan, setDataPelanggan] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleClick = (pelanggan) => {
@@ -58,6 +59,7 @@ const Pelanggan = () => {
         }
         const data = await response.json();
         setDataPelanggan(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error.message);
       }
@@ -103,35 +105,41 @@ const Pelanggan = () => {
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
-              {dataPelanggan.map((pelanggan, id) => (
-                <tr key={pelanggan.noMeter}>
-                  <th>{id + 1}</th>
-                  <th>{pelanggan.nama}</th>
-                  <td>{pelanggan.alamat}</td>
-                  <td>{pelanggan.noMeter}</td>
-                  <td>{pelanggan.kodeTarif}</td>
-                  <td>{pelanggan.beban}</td>
-                  <td>{pelanggan.tarifPerKwh}</td>
-                  <td>
-                    <Button
-                      className="m-1"
-                      variant="danger"
-                      onClick={() => handleDelete(pelanggan.noMeter)}
-                    >
-                      <TiUserDeleteOutline />
-                    </Button>
-                    <Button
-                      onClick={() => handleClick(pelanggan)}
-                      className="m-1"
-                      variant="primary"
-                    >
-                      <LiaUserEditSolid />
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {loading ? (
+              <>
+                <div className="loader"></div>
+              </>
+            ) : (
+              <tbody>
+                {dataPelanggan.map((pelanggan, id) => (
+                  <tr key={pelanggan.noMeter}>
+                    <th>{id + 1}</th>
+                    <th>{pelanggan.nama}</th>
+                    <td>{pelanggan.alamat}</td>
+                    <td>{pelanggan.noMeter}</td>
+                    <td>{pelanggan.kodeTarif}</td>
+                    <td>{pelanggan.beban}</td>
+                    <td>{pelanggan.tarifPerKwh}</td>
+                    <td>
+                      <Button
+                        className="m-1"
+                        variant="danger"
+                        onClick={() => handleDelete(pelanggan.noMeter)}
+                      >
+                        <TiUserDeleteOutline />
+                      </Button>
+                      <Button
+                        onClick={() => handleClick(pelanggan)}
+                        className="m-1"
+                        variant="primary"
+                      >
+                        <LiaUserEditSolid />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
           </table>
         </div>
       </div>

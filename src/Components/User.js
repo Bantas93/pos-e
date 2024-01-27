@@ -10,6 +10,7 @@ import NotLogin from "./NotLogin";
 const User = () => {
   const handleLogin = localStorage.username;
   const [dataUser, setDataUser] = useState([]);
+  const [loading, setLoadinng] = useState(true);
   const navigate = useNavigate();
 
   const handleClick = (user) => {
@@ -44,6 +45,7 @@ const User = () => {
         }
         const data = await response.json();
         setDataUser(data);
+        setLoadinng(false);
       } catch (error) {
         console.error("Error fetching data:", error.message);
       }
@@ -85,43 +87,49 @@ const User = () => {
           </Button>
         </div>
         <div className="card border-dark p-5 m-3 shadow">
-          <table className="table text-center">
-            <thead>
-              <tr>
-                <th scope="col">No</th>
-                <th scope="col">Role</th>
-                <th scope="col">Name</th>
-                <th scope="col">Created</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {dataUser.map((user, id) => (
-                <tr key={user.userId}>
-                  <th>{id + 1}</th>
-                  <td>{user.hakAkses}</td>
-                  <td>{user.username}</td>
-                  <td>{user.createdDate}</td>
-                  <td>
-                    <Button
-                      className="m-1"
-                      variant="danger"
-                      onClick={() => handleDelete(user.username)}
-                    >
-                      <TiUserDeleteOutline />
-                    </Button>
-                    <Button
-                      onClick={() => handleClick(user)}
-                      className="m-1"
-                      variant="primary"
-                    >
-                      <LiaUserEditSolid />
-                    </Button>
-                  </td>
+          {loading ? (
+            <>
+              <div className="loader"></div>
+            </>
+          ) : (
+            <table className="table text-center">
+              <thead>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Created</th>
+                  <th scope="col">Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {dataUser.map((user, id) => (
+                  <tr key={user.userId}>
+                    <th>{id + 1}</th>
+                    <td>{user.hakAkses}</td>
+                    <td>{user.username}</td>
+                    <td>{user.createdDate}</td>
+                    <td>
+                      <Button
+                        className="m-1"
+                        variant="danger"
+                        onClick={() => handleDelete(user.username)}
+                      >
+                        <TiUserDeleteOutline />
+                      </Button>
+                      <Button
+                        onClick={() => handleClick(user)}
+                        className="m-1"
+                        variant="primary"
+                      >
+                        <LiaUserEditSolid />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </>
