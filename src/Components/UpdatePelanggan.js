@@ -55,7 +55,7 @@ const UpdatePelanggan = () => {
   return (
     <div className="container">
       <section className="row d-flex justify-content-center align-items-center m-5">
-        <Card className="shadow CardW">
+        <Card className="shadow CardW" data-bs-theme="dark">
           <Card.Body>
             <Card.Title className="text-center">Update Pelanggan</Card.Title>
             <hr className="mt-4"></hr>
