@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NotLogin = () => {
   return (
-    <div className="container p-5">
+    <div className="container p-5 text-white">
       <div
         style={{
           fontSize: "15Rem",

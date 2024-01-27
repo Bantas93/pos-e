@@ -44,7 +44,10 @@ const Login = () => {
 
   return (
     <main className="container-fluid d-flex justify-content-center align-items-center bg-login">
-      <section className="card shadow-lg p-4 mb-2 bg-body-tertiary rounded CardW">
+      <section
+        className="card shadow p-4 mb-2 bg-body-tertiary CardW"
+        data-bs-theme="dark"
+      >
         <div className="card-body">
           <h1 className="text-center">POS-E</h1>
           <h6 className="text-center">Login User</h6>

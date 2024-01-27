@@ -2,7 +2,7 @@ import { SiAlienware } from "react-icons/si";
 
 const NotFound = () => {
   return (
-    <div className="container p-5 ">
+    <div className="container p-5 text-white">
       <div
         style={{
           fontSize: "15Rem",

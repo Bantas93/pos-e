@@ -16,7 +16,7 @@ const Dashboard = () => {
         <div className="d-flex flex-column justify-content-center align-items-center mt-5">
           <h3 className="text-center">Wellcome Back,</h3>
           <div className="d-flex jusstify-content-center align-items-center">
-            <Card className="mt-5 p-5 shadow" data-bs-theme="dark">
+            <Card className="mt-5 p-5 shadow border-white" data-bs-theme="dark">
               <h1>{handleLogin}</h1>
             </Card>
           </div>
