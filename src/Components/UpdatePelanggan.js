@@ -2,6 +2,7 @@ import NotLogin from "./NotLogin";
 import { useLocation, redirect, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Card, Form } from "react-bootstrap";
+import { updatedResponse } from "../utils/Reponse";
 
 const UpdatePelanggan = () => {
   const handleLogin = localStorage.username;
@@ -23,29 +24,14 @@ const UpdatePelanggan = () => {
   };
 
   const submit = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/v1/pelanggan/${noMeter}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            kodeTarif: kodeTarif,
-            nama: nama,
-            alamat: alamat,
-          }),
-        }
-      );
-
-      if (response.ok) {
-        window.alert("Pelanggan Berhasil di Update");
-        navigate("/Pelanggan");
-      }
-    } catch (error) {
-      console.error("Error submitting data:", error.message);
-    }
+    const submitData = {
+      kodeTarif: kodeTarif,
+      nama: nama,
+      alamat: alamat,
+    };
+    await updatedResponse("PATCH", `pelanggan/${noMeter}`, submitData);
+    window.alert("Pelanggan Berhasil di Update");
+    navigate("/Pelanggan");
   };
 
   if (handleLogin == null) {

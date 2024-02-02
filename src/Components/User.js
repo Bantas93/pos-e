@@ -11,7 +11,7 @@ import { response, deletedResponse } from "../utils/Reponse";
 const User = () => {
   const handleLogin = localStorage.username;
   const [dataUser, setDataUser] = useState([]);
-  const [loading, setLoadinng] = useState(true);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleClick = (user) => {
@@ -26,9 +26,9 @@ const User = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await response("GEt", "user");
+      const data = await response("GET", "user");
       setDataUser(data);
-      setLoadinng(false);
+      setLoading(false);
     };
     fetchData();
   }, []);
