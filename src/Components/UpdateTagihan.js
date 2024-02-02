@@ -3,6 +3,7 @@ import NotLogin from "./NotLogin";
 import { redirect, useLocation, useNavigate } from "react-router-dom";
 import Bulan from "../utils/Bulan";
 import { Dropdown, Card, Form } from "react-bootstrap";
+import { updatedResponse } from "../utils/Reponse";
 
 const UpdateTagihan = () => {
   const handleLogin = localStorage.username;
@@ -24,31 +25,20 @@ const UpdateTagihan = () => {
   };
 
   const submit = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/v1/tagihan/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            noMeter: data.noMeter,
-            nama: data.nama,
-            bulanTagihan: bulanTagih.value,
-            tahunTagihan: tahunTagih,
-            totalPemakaian: total,
-          }),
-        }
-      );
-
-      if (response.ok) {
-        window.alert("Data Berhasil di Update");
-        navigate("/Tagihan");
-      }
-    } catch (error) {
-      console.error("Error submitting data:", error.message);
+    if (!bulanTagih || !tahunTagih || !total) {
+      window.alert("Data harus lengkap");
+      return;
     }
+    const submitData = {
+      noMeter: data.noMeter,
+      nama: data.nama,
+      bulanTagihan: bulanTagih.value,
+      tahunTagihan: tahunTagih,
+      totalPemakaian: total,
+    };
+    await updatedResponse("PATCH", `tagihan/${id}`, submitData);
+    window.alert("Tagihan Berhasil di Update");
+    navigate("/Tagihan");
   };
 
   if (handleLogin == null) {

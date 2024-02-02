@@ -6,6 +6,7 @@ import { TiUserDeleteOutline } from "react-icons/ti";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
 import NotLogin from "./NotLogin";
+import { response, deletedResponse } from "../utils/Reponse";
 
 const Tagihan = () => {
   const handleLogin = localStorage.username;
@@ -27,42 +28,17 @@ const Tagihan = () => {
   };
 
   const Delete = async (id) => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/v1/tagihan/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.ok) {
-        window.alert(`Tagihan berhasil dihapus.`);
-        window.location.reload();
-      } else {
-        console.error(`Failed to delete tagihan. Status: ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Error deleting user:", error.message);
-    }
+    await deletedResponse("DELETE", `tagihan/${id}`);
+    window.alert(`Tagihan deleted successfully.`);
+    window.location.reload();
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/v1/tagihan");
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data. Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setDataTagihan(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error.message);
-      }
+      const data = await response("GET", "tagihan");
+      setDataTagihan(data);
+      setLoading(false);
     };
-
     fetchData();
   }, []);
 
