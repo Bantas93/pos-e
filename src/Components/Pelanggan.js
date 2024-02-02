@@ -68,24 +68,24 @@ const Pelanggan = () => {
           </Button>
         </div>
         <div className="card border-white p-5 m-3 shadow" data-bs-theme="dark">
-          <table className="table text-center" data-bs-theme="dark">
-            <thead>
-              <tr>
-                <th scope="col">No</th>
-                <th scope="col">Nama Pelanggan</th>
-                <th scope="col">Alamat</th>
-                <th scope="col">No Meter</th>
-                <th scope="col">Kode Tarif</th>
-                <th scope="col">Beban</th>
-                <th scope="col">Tarif Per Kwh</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            {loading ? (
-              <>
-                <div className="loader"></div>
-              </>
-            ) : (
+          {loading ? (
+            <>
+              <div className="loader"></div>
+            </>
+          ) : (
+            <table className="table text-center" data-bs-theme="dark">
+              <thead>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Nama Pelanggan</th>
+                  <th scope="col">Alamat</th>
+                  <th scope="col">No Meter</th>
+                  <th scope="col">Kode Tarif</th>
+                  <th scope="col">Beban</th>
+                  <th scope="col">Tarif Per Kwh</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
               <tbody>
                 {dataPelanggan.map((pelanggan, id) => (
                   <tr key={pelanggan.noMeter}>
@@ -115,8 +115,8 @@ const Pelanggan = () => {
                   </tr>
                 ))}
               </tbody>
-            )}
-          </table>
+            </table>
+          )}
         </div>
       </div>
     </>
