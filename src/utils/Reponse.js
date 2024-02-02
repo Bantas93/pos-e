@@ -1,6 +1,5 @@
 export const response = async (method, resource, query, body) => {
-  const baseUrl = "http://localhost:8080/api/v1";
-  const url = `${baseUrl}/${resource}?${query}`;
+  const url = `${process.env.REACT_APP_BASE_URL}/${resource}?${query}`;
   const requestOptions = {
     method: method.toUpperCase(),
     headers: {
@@ -22,8 +21,7 @@ export const response = async (method, resource, query, body) => {
 };
 
 export const deletedResponse = async (method, resource, body) => {
-  const baseUrl = "http://localhost:8080/api/v1";
-  const url = `${baseUrl}/${resource}`;
+  const url = `${process.env.REACT_APP_BASE_URL}/${resource}`;
   const requestOptions = {
     method: method.toUpperCase(),
     headers: {
@@ -43,9 +41,7 @@ export const deletedResponse = async (method, resource, body) => {
 };
 
 export const updatedResponse = async (method, resource, body) => {
-  console.log(body);
-  const baseUrl = "http://localhost:8080/api/v1";
-  const url = `${baseUrl}/${resource}`;
+  const url = `${process.env.REACT_APP_BASE_URL}/${resource}`;
   const requestOptions = {
     method: method.toUpperCase(),
     headers: {
