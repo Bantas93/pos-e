@@ -2,6 +2,7 @@ import NotLogin from "./NotLogin";
 import { useState } from "react";
 import { redirect, useLocation, useNavigate } from "react-router-dom";
 import { Card, Form } from "react-bootstrap";
+import { updatedResponse } from "../utils/Reponse";
 
 const UpdateUser = () => {
   const handleLogin = localStorage.username;
@@ -27,29 +28,14 @@ const UpdateUser = () => {
   };
 
   const submit = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/v1/user/${data.username}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: nama,
-            password: password,
-            hakAkses: selectedRole,
-          }),
-        }
-      );
-
-      if (response.ok) {
-        window.alert("User Berhasil di Update");
-        navigate("/User");
-      }
-    } catch (error) {
-      console.error("Error submitting data:", error.message);
-    }
+    const submitData = {
+      username: nama,
+      password: password,
+      hakAkses: selectedRole,
+    };
+    await updatedResponse("PATCH", `user/${data.username}`, submitData);
+    window.alert("User Berhasil di Update");
+    navigate("/User");
   };
 
   if (handleLogin == null) {
