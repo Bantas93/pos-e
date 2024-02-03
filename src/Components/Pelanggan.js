@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { Link, useNavigate, redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavbarList from "./NavbarList";
@@ -54,7 +54,7 @@ const Pelanggan = () => {
 
       <div className="container">
         <h1 className="text-white">Daftar Pelanggan</h1>
-        <div className="container text-end">
+        <div className="container">
           <Button
             as={Link}
             to={{
@@ -67,23 +67,23 @@ const Pelanggan = () => {
             <TiUserAddOutline className="ms-3" />
           </Button>
         </div>
-        <div className="card border-white p-5 m-3 shadow" data-bs-theme="dark">
+        <div className="m-3">
           {loading ? (
             <>
               <div className="loader"></div>
             </>
           ) : (
-            <table className="table text-center" data-bs-theme="dark">
+            <Table className="text-center" data-bs-theme="dark" responsive="sm">
               <thead>
                 <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">Nama Pelanggan</th>
-                  <th scope="col">Alamat</th>
-                  <th scope="col">No Meter</th>
-                  <th scope="col">Kode Tarif</th>
-                  <th scope="col">Beban</th>
-                  <th scope="col">Tarif Per Kwh</th>
-                  <th scope="col">Action</th>
+                  <th>No</th>
+                  <th>Nama Pelanggan</th>
+                  <th>Alamat</th>
+                  <th>No Meter</th>
+                  <th>Kode Tarif</th>
+                  <th>Beban</th>
+                  <th>Tarif Per Kwh</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -115,7 +115,7 @@ const Pelanggan = () => {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </Table>
           )}
         </div>
       </div>

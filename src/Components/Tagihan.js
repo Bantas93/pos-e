@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import NavbarList from "./NavbarList";
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { Link, useNavigate, redirect } from "react-router-dom";
 import { TiUserDeleteOutline } from "react-icons/ti";
 import { LiaUserEditSolid } from "react-icons/lia";
@@ -52,7 +52,7 @@ const Tagihan = () => {
 
       <div className="container">
         <h1 className="text-white">Daftar Tagihan</h1>
-        <div className="container text-end">
+        <div className="container">
           <Button
             as={Link}
             to={{
@@ -65,13 +65,13 @@ const Tagihan = () => {
             <TiUserAddOutline className="ms-3" />
           </Button>
         </div>
-        <div className="card border-white p-5 m-3 shadow" data-bs-theme="dark">
+        <div className="m-3">
           {loading ? (
             <>
               <div className="loader"></div>
             </>
           ) : (
-            <table className="table text-center" data-bs-theme="dark">
+            <Table className="text-center" data-bs-theme="dark" responsive="sm">
               <thead>
                 <tr>
                   <th scope="col">No</th>
@@ -111,7 +111,7 @@ const Tagihan = () => {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </Table>
           )}
         </div>
       </div>
