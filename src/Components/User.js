@@ -1,19 +1,17 @@
 import { Button, Table, Modal, Form } from "react-bootstrap";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import NavbarList from "./NavbarList";
 import { useState, useEffect } from "react";
 import { TiUserDeleteOutline } from "react-icons/ti";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
 import NotLogin from "./NotLogin";
-import { response, deletedResponse } from "../utils/Reponse";
-import { updatedResponse } from "../utils/Reponse";
+import { response, deletedResponse, updatedResponse } from "../utils/Reponse";
 
 const User = () => {
   const handleLogin = localStorage.username;
   const [dataUser, setDataUser] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   // Modal start
   const [nama, setNama] = useState(dataUser.username);
@@ -47,10 +45,6 @@ const User = () => {
   };
 
   // Modal end
-
-  const handleClick = (user) => {
-    navigate("/UpdateUser", { state: { user } });
-  };
 
   const Delete = async (id) => {
     await deletedResponse("DELETE", `user/${id}`);
@@ -131,17 +125,11 @@ const User = () => {
                         <TiUserDeleteOutline />
                       </Button>
                       <Button
-                        onClick={() => handleClick(user)}
+                        onClick={() => handleShow(user)}
                         className="m-1"
                         variant="primary"
                       >
                         <LiaUserEditSolid />
-                      </Button>
-                      <Button
-                        variant="primary"
-                        onClick={() => handleShow(user)}
-                      >
-                        Update
                       </Button>
                     </td>
                   </tr>

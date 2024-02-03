@@ -1,22 +1,52 @@
-import { Button, Table } from "react-bootstrap";
-import { Link, useNavigate, redirect } from "react-router-dom";
+import { Button, Table, Form, Modal } from "react-bootstrap";
+import { Link, redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavbarList from "./NavbarList";
 import { TiUserDeleteOutline } from "react-icons/ti";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
 import NotLogin from "./NotLogin";
-import { deletedResponse, response } from "../utils/Reponse";
+import { response, deletedResponse, updatedResponse } from "../utils/Reponse";
 
 const Pelanggan = () => {
   const handleLogin = localStorage.username;
   const [dataPelanggan, setDataPelanggan] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
-  const handleClick = (pelanggan) => {
-    navigate("/UpdatePelanggan", { state: { pelanggan } });
+  // Modal Start
+  const kodeTarif = dataPelanggan.kodeTarif;
+  const [nama, setNama] = useState(dataPelanggan.nama);
+  const [alamat, setAlamat] = useState(dataPelanggan.alamat);
+  const [show, setShow] = useState(false);
+  const [submitData, setSubmitData] = useState(dataPelanggan);
+  const handleClose = () => setShow(false);
+  const handleCloseSubmit = async () => {
+    if (!nama || !alamat) {
+      window.alert("Data harus lengkap !");
+    } else {
+      const accept = window.confirm("Yakin ingin update?");
+      if (accept) {
+        const pushData = {
+          kodeTarif: kodeTarif,
+          nama: nama,
+          alamat: alamat,
+        };
+        await updatedResponse(
+          "PATCH",
+          `pelanggan/${submitData.noMeter}`,
+          pushData
+        );
+        window.alert("Pelanggan berhasil di update");
+        setShow(false);
+        window.location.reload();
+      }
+    }
   };
+  const handleShow = (pelanggan) => {
+    setShow(true);
+    setSubmitData(pelanggan);
+  };
+  // Modal End
 
   const handleDelete = (id) => {
     const result = window.confirm(
@@ -105,7 +135,7 @@ const Pelanggan = () => {
                         <TiUserDeleteOutline />
                       </Button>
                       <Button
-                        onClick={() => handleClick(pelanggan)}
+                        onClick={() => handleShow(pelanggan)}
                         className="m-1"
                         variant="primary"
                       >
@@ -118,6 +148,55 @@ const Pelanggan = () => {
             </Table>
           )}
         </div>
+        <Modal
+          show={show}
+          onHide={handleClose}
+          className="text-light"
+          data-bs-theme="dark"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Update Pelanggan</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Group className="mb-3" id="meter">
+              <p>No Meter</p>
+              <h3>{submitData.noMeter}</h3>
+            </Form.Group>
+
+            <Form.Group className="mb-3" id="meter">
+              <p>Kode Tarif</p>
+              <h3>{submitData.kodeTarif}</h3>
+            </Form.Group>
+
+            <Form.Group className="mb-3" id="inputNama">
+              <p>Nama Pelanggan</p>
+              <Form.Control
+                name="nama"
+                type="text"
+                placeholder="type here..."
+                onChange={(e) => setNama(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" id="alamat">
+              <p>Alamat</p>
+              <Form.Control
+                name="alamat"
+                type="text"
+                placeholder="type here..."
+                onChange={(e) => setAlamat(e.target.value)}
+              />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleCloseSubmit}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </>
   );

@@ -41,9 +41,7 @@ export const deletedResponse = async (method, resource, body) => {
 };
 
 export const updatedResponse = async (method, resource, body) => {
-  console.log(body);
   const url = `${process.env.REACT_APP_BASE_URL}/${resource}`;
-  console.log(url);
   const requestOptions = {
     method: method.toUpperCase(),
     headers: {
