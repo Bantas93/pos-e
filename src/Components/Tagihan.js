@@ -1,22 +1,55 @@
 import { useState, useEffect } from "react";
 import NavbarList from "./NavbarList";
-import { Button, Table } from "react-bootstrap";
-import { Link, useNavigate, redirect } from "react-router-dom";
+import { Button, Table, Form, Dropdown, Modal } from "react-bootstrap";
+import { Link, redirect } from "react-router-dom";
 import { TiUserDeleteOutline } from "react-icons/ti";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { TiUserAddOutline } from "react-icons/ti";
 import NotLogin from "./NotLogin";
-import { response, deletedResponse } from "../utils/Reponse";
+import { response, deletedResponse, updatedResponse } from "../utils/Reponse";
+import Bulan from "../utils/Bulan";
 
 const Tagihan = () => {
   const handleLogin = localStorage.username;
   const [dataTagihan, setDataTagihan] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
-  const handleClick = (user) => {
-    navigate("/UpdateTagihan", { state: { user } });
+  // Modal Start
+  const [bulanTagih, setBulanTagih] = useState();
+  const [tahunTagih, setTahunTagih] = useState(dataTagihan.tahunTagihan);
+  const [total, setTotal] = useState(dataTagihan.totalPemakaian);
+  const [show, setShow] = useState(false);
+  const [submitData, setSubmitData] = useState(dataTagihan);
+  const handleClose = () => setShow(false);
+  const handleCloseSubmit = async () => {
+    if (!bulanTagih || !tahunTagih || !total) {
+      window.alert("Data harus lengkap !");
+    } else {
+      const accept = window.confirm("Yakin ingin update?");
+      if (accept) {
+        const pushData = {
+          noMeter: dataTagihan.noMeter,
+          nama: dataTagihan.nama,
+          bulanTagihan: bulanTagih.value,
+          tahunTagihan: tahunTagih,
+          totalPemakaian: total,
+        };
+        await updatedResponse(
+          "PATCH",
+          `tagihan/${submitData.idTagihan}`,
+          pushData
+        );
+        window.alert("Pelanggan berhasil di update");
+        setShow(false);
+        window.location.reload();
+      }
+    }
   };
+  const handleShow = (user) => {
+    setShow(true);
+    setSubmitData(user);
+  };
+  // Modal End
 
   const handleDelete = (id) => {
     const result = window.confirm(`Yakin hapus Tagihan ini ?`);
@@ -101,7 +134,7 @@ const Tagihan = () => {
                         <TiUserDeleteOutline />
                       </Button>
                       <Button
-                        onClick={() => handleClick(user)}
+                        onClick={() => handleShow(user)}
                         className="m-1"
                         variant="primary"
                       >
@@ -114,6 +147,76 @@ const Tagihan = () => {
             </Table>
           )}
         </div>
+        <Modal
+          show={show}
+          onHide={handleClose}
+          className="text-light"
+          data-bs-theme="dark"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Update Tagihan</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Group className="mb-3" id="meter">
+              <p>No Meter</p>
+              <h3>{submitData.noMeter}</h3>
+            </Form.Group>
+
+            <Form.Group className="mb-3" id="nama">
+              <p>Nama</p>
+              <h3>{submitData.nama}</h3>
+            </Form.Group>
+
+            <div className="mb-3" id="bulanTagih">
+              <p>Bulan Tagihan</p>
+              <Dropdown>
+                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                  {bulanTagih ? bulanTagih.nama : "Pilih Bulan"}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {Bulan
+                    ? Bulan().map((bulan) => (
+                        <Dropdown.Item
+                          key={bulan.value}
+                          onClick={() => setBulanTagih(bulan)}
+                        >
+                          {bulan.nama}
+                        </Dropdown.Item>
+                      ))
+                    : null}
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+
+            <Form.Group className="mb-3" id="inputTahunTagih">
+              <p>Tahun Tagihan</p>
+              <Form.Control
+                name="tahunTagih"
+                type="number"
+                placeholder="type here..."
+                onChange={(e) => setTahunTagih(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" id="totalPemakaian">
+              <p>Total pemakaian</p>
+              <Form.Control
+                name="totalPemakaian"
+                type="number"
+                placeholder="type here..."
+                onChange={(e) => setTotal(e.target.value)}
+              />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleCloseSubmit}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </>
   );
