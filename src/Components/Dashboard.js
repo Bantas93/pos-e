@@ -1,4 +1,3 @@
-import { Card } from "react-bootstrap";
 import NotLogin from "./NotLogin";
 import NavbarList from "./NavbarList";
 const Dashboard = () => {
@@ -14,12 +13,7 @@ const Dashboard = () => {
 
       <div className="container text-white">
         <div className="d-flex flex-column justify-content-center align-items-center mt-5">
-          <h3 className="text-center">Wellcome Back,</h3>
-          <div className="d-flex jusstify-content-center align-items-center">
-            <Card className="mt-5 p-5 shadow border-white" data-bs-theme="dark">
-              <h1>{handleLogin}</h1>
-            </Card>
-          </div>
+          <h3 className="text-center">Wellcome Back,{handleLogin}</h3>
         </div>
       </div>
     </>

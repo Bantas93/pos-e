@@ -9,7 +9,6 @@ import Pelanggan from "./components/Pelanggan";
 import TambahPelanggan from "./components/TambahPelanggan";
 import Tagihan from "./components/Tagihan";
 import TambahTagihan from "./components/TambahTagihan";
-import UpdateTagihan from "./components/UpdateTagihan";
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
           <Route path="/TambahPelanggan" element={<TambahPelanggan />} />
           <Route path="/Tagihan" element={<Tagihan />} />
           <Route path="/TambahTagihan" element={<TambahTagihan />} />
-          <Route path="/UpdateTagihan" element={<UpdateTagihan />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </>
